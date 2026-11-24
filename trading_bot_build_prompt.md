@@ -227,7 +227,6 @@ TRAILING_STOP_ENABLED=true
 BREAKEVEN_ENABLED=true
 TIME_EXIT_HOURS=4
 PAPER_TRADING=true
-PAPER_TRADING_MIN_DAYS=14
 PORT=3000
 ENCRYPTION_KEY=32-byte-random-base64
 ```
@@ -236,7 +235,7 @@ ENCRYPTION_KEY=32-byte-random-base64
 
 Do NOT enable live autopilot until all of the following are complete:
 
-1. Paper trading: Run PAPER_TRADING=true on Gemini sandbox for at least 14 days. Log every would-be trade with entry, stop, target, and result.
+1. Paper trading (recommended): Run PAPER_TRADING=true on Gemini sandbox to validate the strategy before going live. Log every would-be trade with entry, stop, target, and result.
 2. Walk-forward backtest: Train strategy parameters on 30 days of historical data, validate on the next 7 days, roll forward. Report win rate, avg win/loss, max drawdown, profit factor.
 3. Monte Carlo simulation: Randomize trade order 1,000 times to see worst-case drawdown sequences. If any simulation blows the account or breaches the $0 floor, reduce position size.
 4. Fee-inclusive backtest: All backtests must include Gemini taker/maker fees + 2 bps slippage.
@@ -257,7 +256,7 @@ Do NOT enable live autopilot until all of the following are complete:
 - [ ] iOS app builds via GitHub Actions and produces an unsigned .ipa for esign sideloading.
 - [ ] PWA installs on iOS Safari and Android Chrome via Add to Home Screen.
 - [ ] All secrets excluded from version control (.env in .gitignore).
-- [ ] 14-day paper trading log generated.
+- [ ] Paper trading log generated (recommended before live).
 - [ ] Walk-forward backtest and Monte Carlo results documented.
 - [ ] User receives push notifications for every autonomous bot action.
 
@@ -288,7 +287,7 @@ Do NOT ask for Apple developer certificates, provisioning profiles, p12 files, o
 
 ## Important Warnings
 
-- **Live trading risk:** This bot trades real money automatically without per-trade approval. There is no guarantee of profit; you can lose your entire $10+ account. Start with paper-trading mode (`PAPER_TRADING=true`) and only switch to live after you are satisfied.
+- **Live trading risk:** This bot trades real money automatically without per-trade approval. There is no guarantee of profit; you can lose your entire $10+ account. Use paper-trading mode (`PAPER_TRADING=true`) to validate before going live.
 - **API key security:** When creating the Gemini API key, disable **Withdrawals**. Only enable Balances and Orders.
 - **Sideloading:** A personal Apple developer certificate allows sideloading to a limited number of devices for development. Renew/provisioning profiles expire; re-sign via esign as needed.
 - **Not financial advice:** This is a technical build prompt, not a recommendation to trade.
